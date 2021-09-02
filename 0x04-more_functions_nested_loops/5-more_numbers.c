@@ -1,19 +1,22 @@
 #include "main.h"
 /**
-  * print_alphabet_x10 - repeats the print_alphabet 10 times.
-  * Return: Nothing.
-  */
-void print_alphabet_x10(void)
-{
-	int i;
-	char c;
+ * more_numbers - prints 10 times the numbers, from 0 to 14
+ */
 
-	for (i = 0; i < 10; ++i)
-	{
-		for (c = 'a'; c <= 'z'; c++)
-		{
-			_putchar(c);
-		}
-		_putchar('\n');
-	}
+void more_numbers(void)
+{
+
+int count;
+char c;
+
+for (count = 1; count <= 10; count++)
+{
+for (c = 0; c <= 14; c++)
+{
+if (c / 10 > 0)
+_putchar((c / 10) + '0');
+_putchar((c % 10) + '0');
+}
+_putchar('\n');
+}
 }
