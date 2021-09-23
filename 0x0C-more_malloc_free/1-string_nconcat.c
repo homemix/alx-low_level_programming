@@ -1,42 +1,46 @@
-#include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
+
 /**
-* string_nconcat - prints concatenate string;
-* @s1: input string.
-* @s2: input string.
-* @n: len s2 string for print.
-* Return: Nothing.
-*/
+  * string_nconcat - concatinate two strings
+  * @s1: String
+  * @s2: String
+  * @n: unisgned integer
+  * Return: Null if fails, pointer to a string
+  */
+
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int l1, i, e;
-	char *a;
 
-	if (s1 == NULL)
-		s1 = "";
+	unsigned int i, len1 = 0, len2 = 0, final;
+	char *res;
 
-	if (s2 == NULL)
-		s2 = "";
-	l1 = 0;
-	while (s1[l1])
-		l1++;
-
-	a = malloc(sizeof(*a) * l1 + n + 1);
-
-	if (a == NULL)
-		return (NULL);
-
-	for (i = 0, e = 0; i < (l1 + n); i++)
+	if (s1 != NULL)
 	{
-		if (i < l1)
-		{
-			a[i] = s1[i];
-		}
-		else
-		{
-			a[i] = s2[e++];
-		}
+	while (s1[len1])
+		len1++;
 	}
-	a[i] = '\0';
-	return (a);
+	if (s2 != NULL)
+	{
+	while (s2[len2])
+		len2++;
+	}
+	if (n < len2)
+		len2 = n;
+
+	final = len1 + len2;
+
+		final++;
+		res = malloc(final * sizeof(char));
+		if (res == NULL)
+			return (NULL);
+		for (i = 0; i < len1; i++)
+			res[i] = s1[i];
+		for (i = 0; i < len2; i++)
+		{
+			res[i + len1] = s2[i];
+		}
+		res[final - 1] = '\0';
+
+return (res);
 }
