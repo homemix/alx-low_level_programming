@@ -1,35 +1,48 @@
 #include "dog.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 /**
- * new_dog - entry point
- * @name: string from main, name of pet
- * @age: number from main, age of pet
- * @owner: string from main, owner of pet
- * Return: p
- */
+  * new_dog - fills memory with a constant byte
+  * @name: is the name of the dog
+  * @age: is the age of the dog
+  * @owner: is the owner of the dog
+  * Return: a void pointer
+  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *p;
-	/* reserving memory to struct*/
-	p = malloc(sizeof(dog_t));
-	if (p == NULL)
+	int cont1, cont2, cont3;
+	char *sname, *sowner;
+	dog_t *ndog;
+
+	ndog = malloc(sizeof(dog_t));
+	if (ndog == NULL)
 		return (NULL);
-	/* Cpunting name pointer*/
-	if (name == NULL)
+	for (cont1 = 0; name[cont1] != '\0'; cont1++)
+		;
+	for (cont2 = 0; owner[cont2] != '\0'; cont2++)
+		;
+	sname = malloc(sizeof(char) * cont1 + 1);
+	if (sname == NULL)
 	{
-		free(p);
-		free(owner);
+		free(ndog);
 		return (NULL);
 	}
-	if (owner == NULL)
+
+	for (cont3 = 0; cont3 <= cont1; cont3++)
+		sname[cont3] = name[cont3];
+
+	sowner = malloc(sizeof(char) * cont2 + 1);
+	if (sowner == NULL)
 	{
-		free(p);
-		free(name);
+		free(ndog);
+		free(sname);
 		return (NULL);
 	}
-	p->name = name;
-	p->age = age;
-	p->owner = owner;
-	return (p);
+	for (cont3 = 0; cont3 <= cont2; cont3++)
+		sowner[cont3] = owner[cont3];
+	ndog->name = sname;
+	ndog->age = age;
+	ndog->owner = sowner;
+	return (ndog);
 }
