@@ -1,0 +1,1 @@
+prepocesor i C exercise
