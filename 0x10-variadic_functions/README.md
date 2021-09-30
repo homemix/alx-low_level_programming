@@ -1,0 +1,1 @@
+a variadic functions assignment
