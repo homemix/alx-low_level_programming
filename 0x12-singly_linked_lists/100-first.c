@@ -1,14 +1,16 @@
 #include <stdio.h>
-#include "lists.h"
+
+void print_stuff(void) __attribute__ ((constructor));
+
 /**
-* startupfun - Function to execueted before the main.
-*
-* Return: Void.
-*
-*/
-void startupfun(void)
+ * print_stuff - Prints a sentence
+ *
+ * Return: 1
+ */
+void print_stuff(void)
 {
-char *str;
-str = "I bore my house upon my back!";
-printf("You're beat! and yet, you must allow,\n%s\n", str);
+	char *s1 = "You're beat! and yet, you must allow,";
+	char *s2 = "I bore my house upon my back!";
+
+	printf("%s\n%s\n", s1, s2);
 }
