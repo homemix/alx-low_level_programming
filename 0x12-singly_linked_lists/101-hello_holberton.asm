@@ -1,21 +1,21 @@
-section .data
-	msg: db "Hello, Holberton", 10, 0
+;;  ----------------------------------------------------------------------------------------
+	;;  Writes "Hello, World" to the console using only system calls. Runs on 64-bit Linux only.
+	;;  To assemble and run:
+	;;
+	;;      nasm -felf64 hello.asm && ld hello.o && ./a.out
+	;;  ----------------------------------------------------------------------------------------
 
-section .text
+	          global    main
 
-global main
-extern printf
-main:
-	push rax
-	push rbx
-	push rcx
+	          section   .text
+main:	   mov       rax, 1	; system call for write
+	          mov       rdi, 1 ; file handle 1 is stdout
+	          mov       rsi, message ; address of string to output
+	          mov       rdx, 17	 ; number of bytes
+	          syscall		 ; invoke operating system to do the write
+	          mov       rax, 60	 ; system call for exit
+	          xor       rdi, rdi	 ; exit code 0
+	          syscall		 ; invoke operating system to exit
 
-	mov rdi, msg
-	mov rsi, 1
-	call printf
-
-	pop rax
-	pop rbx
-	pop rcx
-
-	ret
+	          section   .data
+message:	  db        "Hello, Holberton", 10 ; note the newline at the end
